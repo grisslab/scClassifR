@@ -161,6 +161,10 @@ setMethod("train_classifier", c("train_obj" = "Seurat"),
   
   # convert hyphen (-) by underscore (_)
   colnames(mat) <- gsub('-', '_', colnames(mat))
+  # add G_ to beginning of gene names to prevent starting by digits
+  colnames(mat) <- unlist(lapply(colnames(mat), 
+                                       function(x) if(grepl('^[[:digit:]]', x)) 
+                                       {paste0('G_', x)} else {x}))
   
   # train
   clf <- train_func(mat, train_tag)
@@ -170,6 +174,7 @@ setMethod("train_classifier", c("train_obj" = "Seurat"),
   p_thres <- 0.5
   
   features <- labels(clf$terms)
+  features <- gsub('^G_', '', features) 
   features <- gsub('_', '-', features) # convert back underscore to hyphen
   object <- scClassifR(cell_type, clf, features, p_thres, 
                              NA_character_)
@@ -269,6 +274,10 @@ setMethod("train_classifier", c("train_obj" = "SingleCellExperiment"),
   
   # convert hyphen (-) by underscore (_)
   colnames(mat) <- gsub('-', '_', colnames(mat))
+  # add G_ to beginning of gene names to prevent starting by digits
+  colnames(mat) <- unlist(lapply(colnames(mat), 
+                                       function(x) if(grepl('^[[:digit:]]', x)) 
+                                       {paste0('G_', x)} else {x}))
   
   # train
   clf <- train_func(mat, train_tag)
@@ -278,6 +287,7 @@ setMethod("train_classifier", c("train_obj" = "SingleCellExperiment"),
   p_thres <- 0.5
   
   features <- labels(clf$terms)
+  features <- gsub('^G_', '', features) 
   features <- gsub('_', '-', features) # convert back underscore to hyphen
   object <- scClassifR(cell_type, clf, features, p_thres, 
                              NA_character_)

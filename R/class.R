@@ -441,6 +441,7 @@ parent <- function(classifier) {
     # set new features
     new_features <- labels(value$terms)
     # convert underscore to hyphen if exists
+    new_features <- gsub('^G_', '', new_features) 
     new_features <- gsub('_', '-', new_features) 
     features(classifier) <- new_features
   } else {
