@@ -32,3 +32,4 @@ Depends: R (>= 4.1), Seurat, SingleCellExperiment, SummarizedExperiment
 LazyData: true
 LazyDataCompression: xz
 RoxygenNote: 7.1.1
+PackageStatus: Deprecated
