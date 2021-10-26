@@ -1,3 +1,9 @@
+# Deprecation Notice
+
+This package was renamed to [scAnnotatR](https://github.com/grisslab/scAnnotatR).
+
+The current version of this package is available on the scAnnotatR GitHub page: https://github.com/grisslab/scAnnotatR
+
 # scClassifR
 
 The `scClassifR` package automatically classifies cells in scRNA-seq datasets. It is simple to use with a clear infrastructure to easily add additional cell type classification models. `scClassifR` support both `Seurat` and `SingleCellExperiment` objects as input.
